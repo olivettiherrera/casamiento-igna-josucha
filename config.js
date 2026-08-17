@@ -10,8 +10,8 @@
  *   2. Pegá el api_token que imprimió setup() en el log
  */
 window.CONFIG = {
-  API_URL: '',
-  API_TOKEN: '',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzeRGciz7uFmIabVKsJxoA8CCBtJkvYaH16RyGLZSWjQBtap2yUJR4LafqzA8y1pDAf/exec',
+  API_TOKEN: '31c29482-8ac2-4f21-b3a7-88bc5dcbb78f',
 
   /** Fallback si el Sheet no responde o estamos en modo demo. */
   FALLBACK: {

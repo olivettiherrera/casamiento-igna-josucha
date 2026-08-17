@@ -86,6 +86,20 @@
     document.body.removeChild(ta);
   }
 
+  /* Sheets guarda el CVU como numero y le come los ceros de adelante, asi que
+     puede llegar "3100070262111040" en vez de "0000003100070262111040". Un
+     CBU/CVU argentino siempre tiene 22 digitos: los reponemos antes de mostrarlo.
+     El Apps Script ya hace lo mismo, pero esto cubre el caso de que el backend
+     no este redeployado. Un destino mal copiado es plata que no llega. */
+  function normalizar(c) {
+    if (c && c.cbu) {
+      var d = String(c.cbu).replace(/\D/g, '');
+      if (d.length > 0 && d.length < 22) c.cbu = ('00000000000000000000000' + d).slice(-22);
+      else if (d.length === 22) c.cbu = d;
+    }
+    return c;
+  }
+
   // ───────────────────────── Carga ─────────────────────────
 
   function cargar() {
@@ -101,7 +115,7 @@
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (!data.ok) throw new Error(data.error || 'Respuesta inválida');
-        estado.config = Object.assign({}, cfg.FALLBACK, data.config);
+        estado.config = normalizar(Object.assign({}, cfg.FALLBACK, data.config));
         estado.items = data.items || [];
         render();
       })
