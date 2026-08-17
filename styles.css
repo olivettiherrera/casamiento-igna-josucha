@@ -380,3 +380,17 @@ main { max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
+/* Pasos dentro de la app: el invitado ya salio de nuestro sitio, asi que
+   tiene que saber de memoria que va a ver. Escritos contra la pantalla real. */
+.pasos {
+  margin: 14px 0 0;
+  padding: 14px 16px 14px 34px;
+  background: var(--accent-soft);
+  border-radius: var(--radius);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.pasos li { margin-bottom: 7px; }
+.pasos li:last-child { margin-bottom: 0; }
