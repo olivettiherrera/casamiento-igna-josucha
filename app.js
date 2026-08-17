@@ -369,10 +369,12 @@
     $('#dTitular').textContent = c.titular || '—';
     $('#dBanco').textContent = c.banco || '—';
 
-    // Verificado en iPhone (spike 2026-08-10): de todos los esquemas probados,
-    // send_money es el unico que cae directo en la pantalla de transferir en vez
-    // del inicio de la app. Los parametros de destino/monto siguen sin confirmarse.
-    $('#btnMP').href = 'mercadopago://send_money';
+    // send_money cae en "A quien le queres transferir?", que SOLO busca contactos
+    // de la agenda: no acepta alias ni CVU (verificado en iPhone, 2026-08-17).
+    // Era peor que abrir el inicio, porque deja al invitado en una pantalla sin
+    // salida. Volvemos al inicio de la app hasta que el spike 3 encuentre una
+    // ruta que lleve al ingreso de CVU/alias.
+    $('#btnMP').href = 'mercadopago://';
 
     pasos('transferir');
   }
