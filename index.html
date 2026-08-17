@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Igna & Josucha — Nuestra luna de miel</title>
+<meta name="description" content="La lista de regalos de la luna de miel de Igna y Josucha. Elegí un pedacito del viaje.">
+<meta property="og:title" content="Igna & Josucha — Nuestra luna de miel">
+<meta property="og:description" content="Elegí un pedacito de nuestro viaje.">
+<meta name="theme-color" content="#FBF9F5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <p class="hero__eyebrow">24 de abril de 2027 · Pompeya, Ascochinga</p>
+  <h1 class="hero__names" id="siteTitle">Igna &amp; Josucha</h1>
+  <p class="hero__sub">Nuestra luna de miel</p>
+</header>
+
+<main>
+  <section class="intro">
+    <p id="introText">Nos vamos de luna de miel a Japón y Filipinas. Si tenés ganas de regalarnos algo, elegí un pedacito del viaje y lo hacemos juntos.</p>
+    <p class="intro__note">Cada regalo se puede compartir entre varios: poné el monto que quieras y se suma al resto.</p>
+  </section>
+
+  <div id="demoBanner" class="banner" hidden>
+    <strong>Sitio de prueba.</strong> Los datos para transferir son reales, pero el itinerario todavía es de ejemplo y las confirmaciones no se guardan en ningún lado.
+  </div>
+
+  <div id="loading" class="loading">Cargando el itinerario…</div>
+
+  <section id="items" class="items" hidden></section>
+
+  <footer class="footer">
+    <p>Gracias por acompañarnos.</p>
+    <p class="footer__small">Igna &amp; Josucha · 2027</p>
+  </footer>
+</main>
+
+
+<!-- ───────────── Hoja de aporte ───────────── -->
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet__backdrop" data-close></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+
+    <button class="sheet__close" data-close aria-label="Cerrar">&times;</button>
+
+    <!-- Paso 1: elegir monto -->
+    <section class="step" id="step-monto">
+      <div class="sheet__item">
+        <span class="sheet__emoji" id="sheetEmoji">🎁</span>
+        <div>
+          <h2 class="sheet__title" id="sheetTitle">—</h2>
+          <p class="sheet__desc" id="sheetDesc"></p>
+        </div>
+      </div>
+
+      <div class="sheet__progress" id="sheetProgress"></div>
+
+      <label class="label" for="montoInput">¿Cuánto querés poner?</label>
+      <div class="chips" id="montoChips"></div>
+
+      <div class="amount">
+        <span class="amount__sign">$</span>
+        <input id="montoInput" type="text" inputmode="numeric" autocomplete="off" placeholder="0">
+      </div>
+      <p class="hint" id="montoHint"></p>
+
+      <button class="btn btn--primary" id="btnAMonto">Continuar</button>
+    </section>
+
+    <!-- Paso 2: datos de la transferencia -->
+    <section class="step" id="step-transferir" hidden>
+      <p class="step__kicker">Estás regalando</p>
+      <h2 class="step__title" id="transTitulo">—</h2>
+      <p class="step__amount" id="transMonto">$ 0</p>
+
+      <p class="step__lead">Transferí desde tu banco o billetera a esta cuenta. Tocá cualquier dato para copiarlo.</p>
+
+      <div class="data">
+        <button class="data__row" data-copy="alias">
+          <span class="data__label">Alias</span>
+          <span class="data__value" id="dAlias">—</span>
+          <span class="data__copy">Copiar</span>
+        </button>
+        <button class="data__row" data-copy="cbu">
+          <span class="data__label">CBU / CVU</span>
+          <span class="data__value data__value--mono" id="dCbu">—</span>
+          <span class="data__copy">Copiar</span>
+        </button>
+        <button class="data__row" data-copy="monto">
+          <span class="data__label">Importe</span>
+          <span class="data__value" id="dMonto">—</span>
+          <span class="data__copy">Copiar</span>
+        </button>
+        <div class="data__row data__row--static">
+          <span class="data__label">Titular</span>
+          <span class="data__value" id="dTitular">—</span>
+        </div>
+        <div class="data__row data__row--static">
+          <span class="data__label">Banco</span>
+          <span class="data__value" id="dBanco">—</span>
+        </div>
+      </div>
+
+      <a class="btn btn--ghost" id="btnMP" href="#">Copiar alias y abrir Mercado Pago</a>
+      <p class="hint hint--center">Te copiamos el alias y te dejamos en la pantalla de transferir de Mercado Pago: solo pegá el alias y poné el monto.</p>
+
+      <button class="btn btn--primary" id="btnYaTransferi">Ya transferí</button>
+      <button class="btn btn--link" id="btnVolver">Volver</button>
+    </section>
+
+    <!-- Paso 3: declarar -->
+    <section class="step" id="step-declarar" hidden>
+      <h2 class="step__title">Contanos quién sos</h2>
+      <p class="step__lead">Para que Igna y Josucha sepan de quién vino el regalo y puedan agradecerte.</p>
+
+      <label class="label" for="inNombre">Tu nombre *</label>
+      <input class="input" id="inNombre" type="text" autocomplete="name" placeholder="Ej: Tía Marta / Familia Pérez">
+
+      <label class="label" for="inMensaje">Un mensaje para ellos</label>
+      <textarea class="input" id="inMensaje" rows="3" placeholder="Opcional"></textarea>
+
+      <label class="label" for="inContacto">Tu teléfono o mail</label>
+      <input class="input" id="inContacto" type="text" autocomplete="tel" placeholder="Opcional">
+
+      <!-- honeypot anti-bots: invisible para personas -->
+      <div class="hp" aria-hidden="true">
+        <label for="website">No completar</label>
+        <input id="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <p class="error" id="declError" hidden></p>
+      <button class="btn btn--primary" id="btnEnviar">Enviar</button>
+      <button class="btn btn--link" id="btnVolver2">Volver</button>
+    </section>
+
+    <!-- Paso 4: gracias -->
+    <section class="step step--center" id="step-gracias" hidden>
+      <div class="gracias__mark">✻</div>
+      <h2 class="step__title">¡Gracias!</h2>
+      <p class="step__lead" id="graciasTexto"></p>
+      <p class="hint">Igna va a chequear que la transferencia haya entrado y lo suma al viaje.</p>
+      <button class="btn btn--primary" data-close>Volver a la lista</button>
+    </section>
+
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
